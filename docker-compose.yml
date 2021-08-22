@@ -1,0 +1,16 @@
+version: "3.5"
+services: 
+  web: 
+    build: .
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - .:/home/node/code
+      - /home/node/code/node_modules
+    links:
+      - mongo
+    environment:
+      MONGO_CONNECTION_STRING: mongodb+srv://testuser:<password>@cluster0.lfbyy.mongodb.net/test
+
+  mongo:
+    image: mongo:4
